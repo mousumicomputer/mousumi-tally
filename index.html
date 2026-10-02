@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mousumi Computer - টালি খাতা</title>
+    <!-- Web App Meta -->
+    <meta name="theme-color" content="#d32f2f">
+    <link rel="icon" type="image/x-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEifAQVAOjeF0ccNQdBRY2gpfOlc19vjYbQiNjCUUJ9jJqxHEjVJB7nhST4fbzYcdaaV3DtoBrxxrhi4nQJsuwHoWnEmQKud8muKsZIRcWV6YgFLEmdsDc8TRv8Vcmw5jktkvXt4cnlRnbxOW8MlFzlJ4P7QSA7E1Owl9bxDsaW7wjMJQ91bdczQa5zjxu94/s1600/Screenshot_1.jpg">
+    <!-- FontAwesome & Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --tally-red: #d32f2f;
+            --tally-green: #2e7d32;
+            --tally-bg: #f4f5f7;
+            --tally-border: #e0e0e0;
+            --tally-text: #212121;
+            --tally-subtext: #757575;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tiro Bangla', 'Plus Jakarta Sans', sans-serif !important;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--tally-bg);
+            color: var(--tally-text);
+            padding-bottom: 75px;
+            user-select: none;
+        }
+
+        input, textarea, select {
+            user-select: text !important;
+        }
+
+        .screen-container {
+            max-width: 480px;
+            margin: 0 auto;
+            display: none;
+            min-height: 100vh;
+            background: #f8fafc;
+        }
+
+        .screen-container.active-screen {
+            display: block;
+        }
+
+        /* SCREEN 1: HEADER (ছবি ১ অনুযায়ী) */
+        .tally-header {
+            background-color: var(--tally-red);
+            color: #ffffff;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .tally-shop-selector {
+            background: #ffffff;
+            color: var(--tally-text);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .h-icon-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.72rem;
+            position: relative;
+        }
+
+        .h-icon-btn i {
+            font-size: 1.15rem;
+            margin-bottom: 2px;
+        }
+
+        .badge-count {
+            position: absolute;
+            top: -5px;
+            right: -6px;
+            background: #fff;
+            color: var(--tally-red);
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 1px 4px;
+            border-radius: 10px;
+        }
+
+        /* ব্যানার */
+        .promo-banner {
+            margin: 12px 16px;
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 1px solid #ffcc80;
+            border-radius: 14px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .promo-banner h4 { font-size: 0.95rem; color: #e65100; font-weight: 800; }
+        .promo-banner p { font-size: 0.75rem; color: #795548; }
+
+        /* সার্ভিস আইকন গ্রিড */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 6px 16px 14px 16px;
+            text-align: center;
+        }
+
+        .service-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .service-icon-box {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background: #ffffff;
+            border: 1px solid #eeeeee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .service-item span { font-size: 0.75rem; font-weight: 600; color: #424242; }
+
+        /* মোট পাবো / মোট দেবো কার্ড */
+        .summary-dashboard-card {
+            background: #ffffff;
+            margin: 0 16px 14px 16px;
+            border-radius: 14px;
+            padding: 16px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid var(--tally-border);
+        }
+
+        .summary-box { text-align: center; }
+        .summary-box:first-child { border-right: 1px solid #eeeeee; }
+        .summary-box h3 { font-size: 1.45rem; font-weight: 800; margin-bottom: 2px; }
+        .summary-box span { font-size: 0.85rem; color: var(--tally-subtext); font-weight: 700; }
+        .text-red { color: var(--tally-red); }
+        .text-green { color: var(--tally-green); }
+
+        /* সার্চ বার */
+        .search-action-bar {
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .search-input-wrap {
+            flex: 1;
+            background: #ffffff;
+            border-radius: 25px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .search-input-wrap input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 0.95rem;
+            background: transparent;
+        }
+
+        .list-info-header {
+            padding: 0 18px 8px 18px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--tally-subtext);
+        }
+
+        /* কাস্টমার তালিকা */
+        .customer-list-wrap {
+            padding: 0 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .customer-card-item {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #eeeeee;
+            cursor: pointer;
+        }
+
+        .cust-left { display: flex; align-items: center; gap: 12px; }
+        .cust-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #c8e6c9;
+            color: #2e7d32;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+        }
+
+        .cust-info h4 { font-size: 0.98rem; font-weight: 800; color: var(--tally-text); margin-bottom: 2px; }
+        .cust-info span { font-size: 0.78rem; color: var(--tally-subtext); }
+        .cust-right { text-align: right; display: flex; align-items: center; gap: 6px; }
+        .cust-right .amount { font-size: 1.05rem; font-weight: 800; }
+
+        /* লাল ফ্লোটিং + বাটন */
+        .fab-add-customer {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: var(--tally-red);
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            z-index: 99;
+        }
+
+        /* বটম ন্যাভ বার */
+        .tally-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: #ffffff;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .b-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #757575;
+            font-size: 0.72rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .b-nav-item.active { color: var(--tally-red); }
+        .b-nav-item i { font-size: 1.25rem; margin-bottom: 2px; }
+
+        /* SCREEN 2: এন্ট্রি পেজ (ছবি ২ অনুযায়ী) */
+        .screen-nav-header {
+            background: #ffffff;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #eeeeee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-back-left { display: flex; align-items: center; gap: 12px; }
+        .back-circle-btn { background: none; border: none; font-size: 1.2rem; color: #424242; cursor: pointer; }
+        .avatar-circle-orange {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: #ff9800; color: #fff; display: flex;
+            align-items: center; justify-content: center; font-weight: bold;
+        }
+
+        .cust-header-title h3 { font-size: 1rem; font-weight: 800; color: #212121; }
+        .cust-header-title span { font-size: 0.78rem; color: #757575; }
+
+        .screen2-body { padding: 16px; }
+
+        .due-tagada-row {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;
+        }
+
+        .due-text-box h4 { font-size: 1.15rem; font-weight: 800; color: var(--tally-red); }
+        .due-text-box span { font-size: 0.78rem; color: #757575; }
+
+        .pill-btn {
+            background: #f5f5f5; border: 1px solid #e0e0e0;
+            padding: 6px 14px; border-radius: 20px; font-size: 0.85rem;
+            font-weight: 700; color: #424242; display: flex; align-items: center; gap: 6px; cursor: pointer;
+        }
+
+        /* দিলাম / পেলাম পাশাপাশি বক্স */
+        .dual-inputs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .tally-box-input {
+            width: 100%;
+            height: 52px;
+            border: 1.5px solid #cccccc;
+            border-radius: 10px;
+            padding: 0 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            outline: none;
+            background: #ffffff;
+        }
+
+        .tally-box-input.active-debit { border-color: var(--tally-red); background: #ffebee; color: var(--tally-red); }
+        .tally-box-input.active-credit { border-color: var(--tally-green); background: #e8f5e9; color: var(--tally-green); }
+
+        .desc-box-wrap { position: relative; margin-bottom: 14px; }
+        .desc-box-wrap i { position: absolute; left: 14px; top: 15px; color: #757575; }
+        .desc-box-input {
+            width: 100%; height: 50px; border: 1.5px solid #cccccc;
+            border-radius: 10px; padding: 0 14px 0 42px; font-size: 0.95rem; outline: none; background: #ffffff;
+        }
+
+        .date-toggle-bar {
+            display: grid; grid-template-columns: 1.2fr 1.4fr 0.8fr;
+            gap: 8px; align-items: center; margin-bottom: 24px;
+        }
+
+        .dt-item-btn {
+            background: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 20px;
+            padding: 7px 10px; display: flex; align-items: center; justify-content: center;
+            gap: 6px; font-size: 0.78rem; font-weight: 700; color: #424242; cursor: pointer;
+        }
+
+        /* ট্যালি মেসেজ সুইচ */
+        .switch { position: relative; display: inline-block; width: 38px; height: 22px; margin-left: 6px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc; transition: .3s; border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px;
+            background-color: white; transition: .3s; border-radius: 50%;
+        }
+        input:checked + .slider { background-color: var(--tally-red); }
+        input:checked + .slider:before { transform: translateX(16px); }
+
+        .btn-confirm-save {
+            width: 100%; height: 52px; background: var(--tally-red); color: #ffffff;
+            border: none; border-radius: 26px; font-size: 1.15rem; font-weight: 800; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.35);
+        }
+        .btn-confirm-save:disabled { background: #e0e0e0; color: #9e9e9e; box-shadow: none; cursor: not-allowed; }
+
+        /* SCREEN 3: লেজার (ছবি ৩ অনুযায়ী) */
+        .ledger-notice-alert {
+            background: #e1f5fe; color: #0277bd; padding: 10px 14px;
+            display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; font-weight: 700; margin-bottom: 10px;
+        }
+
+        .ledger-table-header {
+            display: grid; grid-template-columns: 2fr 1fr 1fr;
+            padding: 10px 14px; background: #eeeeee; font-size: 0.82rem; font-weight: 800; color: #616161; border-bottom: 1px solid #e0e0e0;
+        }
+
+        .ledger-row {
+            display: grid; grid-template-columns: 2fr 1fr 1fr;
+            padding: 12px 14px; border-bottom: 1px solid #f0f0f0; background: #ffffff; font-size: 0.88rem; align-items: center;
+        }
+        .ledger-row .col-desc h5 { font-size: 0.88rem; font-weight: 700; color: #212121; }
+        .ledger-row .col-desc span { font-size: 0.72rem; color: #757575; }
+
+        .ledger-footer-total {
+            display: grid; grid-template-columns: 2fr 1fr 1fr;
+            padding: 14px; background: #ffffff; border-top: 2px solid #e0e0e0; font-weight: 800; font-size: 0.95rem;
+        }
+
+        /* SCREEN 4: তাগাদা (ছবি ৪ অনুযায়ী) */
+        .tagada-preview-card {
+            background: #ffffff; border-radius: 12px; border: 1px solid #eeeeee;
+            padding: 20px; margin: 16px; text-align: center; line-height: 1.6;
+        }
+        .copy-link-btn {
+            margin-top: 14px; padding: 8px 18px; border-radius: 20px;
+            background: #ffebee; color: var(--tally-red); border: 1px solid #ffcdd2;
+            font-weight: 700; font-size: 0.88rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+        }
+        .tagada-action-footer {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px;
+            position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; border-top: 1px solid #e0e0e0;
+        }
+        .btn-tagada-send {
+            height: 48px; border-radius: 24px; border: 1.5px solid var(--tally-red);
+            background: #ffffff; color: var(--tally-red); font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+        }
+
+        /* নতুন কাস্টমার মোডাল */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); display: none; align-items: flex-end; z-index: 9999;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-sheet {
+            background: #ffffff; width: 100%; max-width: 480px; margin: 0 auto;
+            border-radius: 20px 20px 0 0; padding: 20px;
+        }
+        .modal-sheet input {
+            width: 100%; height: 46px; border: 1.5px solid #cccccc; border-radius: 10px;
+            padding: 0 12px; font-size: 0.95rem; margin-bottom: 12px; outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= SCREEN 1: হোম স্ক্রিন ================= -->
+    <div id="screenHome" class="screen-container active-screen">
+        <header class="tally-header">
+            <div class="tally-shop-selector">
+                <span>Mousumi Computer</span>
+                <i class="fa-solid fa-chevron-down" style="font-size:0.75rem;"></i>
+            </div>
+            <div class="header-icons">
+                <a href="#" class="h-icon-btn">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="badge-count">99+</span>
+                    <span>ইনবক্স</span>
+                </a>
+                <a href="#" class="h-icon-btn">
+                    <i class="fa-regular fa-message"></i>
+                    <span>সাপোর্ট</span>
+                </a>
+            </div>
+        </header>
+
+        <div class="promo-banner">
+            <div>
+                <h4>বাংলা QR পেমেন্টে সার্ভিস চার্জ ফ্রি!*</h4>
+                <p>Mousumi Computer - ডিজিটাল ক্যাশলেস কালেকশন</p>
+            </div>
+            <i class="fa-solid fa-qrcode" style="font-size: 2rem; color: #e65100;"></i>
+        </div>
+
+        <!-- সার্ভিস গ্রিড আইকনস -->
+        <div class="service-grid">
+            <div class="service-item" onclick="openNewCustomerModal()">
+                <div class="service-icon-box" style="color:#2e7d32;"><i class="fa-solid fa-book-open"></i></div>
+                <span>নতুন খাতা</span>
+            </div>
+            <div class="service-item">
+                <div class="service-icon-box" style="color:#d32f2f;"><i class="fa-solid fa-boxes-stacked"></i></div>
+                <span>স্টক হিসাব</span>
+            </div>
+            <div class="service-item">
+                <div class="service-icon-box" style="color:#f57c00;"><i class="fa-solid fa-clipboard-list"></i></div>
+                <span>ব্যবসার নোট</span>
+            </div>
+            <div class="service-item">
+                <div class="service-icon-box" style="color:#388e3c;"><i class="fa-solid fa-bell"></i></div>
+                <span>গ্রুপ তাগাদা</span>
+            </div>
+            <div class="service-item">
+                <div class="service-icon-box" style="color:#e91e63;"><i class="fa-solid fa-qrcode"></i></div>
+                <span>QR কোড</span>
+            </div>
+            <div class="service-item">
+                <div class="service-icon-box" style="color:#009688;"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                <span>ডাটা ব্যাকআপ</span>
+            </div>
+            <div class="service-item">
+                <div class="service-icon-box" style="color:#d32f2f;"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                <span>টালি-মেসেজ</span>
+            </div>
+            <div class="service-item">
+                <div class="service-icon-box" style="color:#ff9800;"><i class="fa-solid fa-cash-register"></i></div>
+                <span>ক্যাশবক্স</span>
+            </div>
+        </div>
+
+        <!-- মোট পাবো / মোট দেবো -->
+        <div class="summary-dashboard-card">
+            <div class="summary-box">
+                <h3 class="text-red" id="homeTotalReceivable">৳ ০</h3>
+                <span>মোট পাবো</span>
+            </div>
+            <div class="summary-box">
+                <h3 class="text-green" id="homeTotalPayable">৳ ০</h3>
+                <span>মোট দেবো</span>
+            </div>
+        </div>
+
+        <!-- সার্চ বার -->
+        <div class="search-action-bar">
+            <div class="search-input-wrap">
+                <i class="fa-solid fa-magnifying-glass" style="color: #9e9e9e;"></i>
+                <input type="text" id="custSearchInput" placeholder="খুঁজুন..." oninput="renderCustomerList(this.value)">
+            </div>
+            <div class="service-icon-box" style="width:40px; height:40px; border-radius:50%; margin:0;"><i class="fa-solid fa-sliders"></i></div>
+            <div class="service-icon-box" style="width:40px; height:40px; border-radius:50%; margin:0;" onclick="window.print()"><i class="fa-solid fa-arrow-down-to-line"></i></div>
+        </div>
+
+        <div class="list-info-header">
+            <span id="custCountLabel">কাস্টমার ০ / সাপ্লায়ার ০</span>
+        </div>
+
+        <!-- কাস্টমার লিস্ট -->
+        <div class="customer-list-wrap" id="customerListContainer"></div>
+
+        <!-- লাল ফ্লোটিং বাটন -->
+        <div class="fab-add-customer" onclick="openNewCustomerModal()">
+            <i class="fa-solid fa-user-plus"></i>
+            <span>নতুন কাস্টমার</span>
+        </div>
+
+        <!-- বটম বার -->
+        <nav class="tally-bottom-nav">
+            <a href="#" class="b-nav-item active">
+                <i class="fa-solid fa-book"></i>
+                <span>টালি</span>
+            </a>
+            <a href="#" class="b-nav-item">
+                <i class="fa-solid fa-wallet"></i>
+                <span>ক্যাশবক্স</span>
+            </a>
+            <a href="#" class="b-nav-item">
+                <i class="fa-solid fa-qrcode"></i>
+                <span>QR স্ক্যান</span>
+            </a>
+            <a href="#" class="b-nav-item">
+                <i class="fa-regular fa-credit-card"></i>
+                <span>ওয়ালেট</span>
+            </a>
+            <a href="#" class="b-nav-item">
+                <i class="fa-solid fa-bars"></i>
+                <span>মেন্যু</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- ================= SCREEN 2: এন্ট্রি পেজ ================= -->
+    <div id="screenEntry" class="screen-container">
+        <header class="screen-nav-header">
+            <div class="nav-back-left">
+                <button class="back-circle-btn" onclick="switchScreen('screenHome')">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <div class="avatar-circle-orange" id="entryAvatar">মর</div>
+                <div class="cust-header-title">
+                    <h3 id="entryCustName">মো: রাকিব উদ্দিন</h3>
+                    <span id="entryCustPhone">+8801893201584</span>
+                </div>
+            </div>
+            <div><i class="fa-solid fa-ellipsis-vertical" style="font-size:1.2rem; color:#757575;"></i></div>
+        </header>
+
+        <div class="screen2-body">
+            <div class="due-tagada-row">
+                <div class="due-text-box">
+                    <h4 id="entryCurrentDue">পাবো ৳ ১,০২০.০০</h4>
+                    <span id="entryDueDays">(২৯০ দিন আগে)</span>
+                </div>
+                <div style="display:flex; gap:8px;">
+                    <button class="pill-btn" onclick="openTagadaScreen()"><i class="fa-regular fa-bell"></i> তাগাদা</button>
+                    <button class="pill-btn" onclick="openLedgerScreen()"><i class="fa-regular fa-file-lines"></i> রিপোর্ট</button>
+                </div>
+            </div>
+
+            <!-- পাশাপাশি দুটি ইনপুট -->
+            <div class="dual-inputs-grid">
+                <input type="number" step="any" id="inputDebit" class="tally-box-input" placeholder="৳ দিলাম/বেচা" oninput="onDualAmountChange('debit')">
+                <input type="number" step="any" id="inputCredit" class="tally-box-input" placeholder="৳ পেলাম" oninput="onDualAmountChange('credit')">
+            </div>
+
+            <div class="desc-box-wrap">
+                <i class="fa-regular fa-pen-to-square"></i>
+                <input type="text" id="inputDesc" class="desc-box-input" placeholder="বিবরণ লিখুন (ঐচ্ছিক)">
+            </div>
+
+            <div class="date-toggle-bar">
+                <div class="dt-item-btn" onclick="pickEntryDate()">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span id="displaySelectedDate">আজকে</span>
+                </div>
+                <div class="dt-item-btn" style="justify-content: space-between;">
+                    <span>টালি-মেসেজ</span>
+                    <label class="switch">
+                        <input type="checkbox" id="smsToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="dt-item-btn"><i class="fa-solid fa-camera"></i> ছবি</div>
+            </div>
+
+            <div style="background:#fff; border-radius:12px; padding:15px; text-align:center; border:1px solid #eeeeee; margin-bottom:20px;">
+                <h5 style="color:#d32f2f; font-weight:800; margin-bottom:4px;">বাংলা QR পেমেন্ট ফ্রি! 💥💸</h5>
+                <p style="font-size:0.8rem; color:#757575;">কাস্টমারকে কিউআর কোড দিন ও সহজে টাকা সংগ্রহ করুন</p>
+            </div>
+
+            <button class="btn-confirm-save" id="btnConfirmTx" onclick="saveTallyTransaction()" disabled>
+                নিশ্চিত
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= SCREEN 3: লেজার পেজ ================= -->
+    <div id="screenLedger" class="screen-container">
+        <header class="screen-nav-header">
+            <div class="nav-back-left">
+                <button class="back-circle-btn" onclick="switchScreen('screenEntry')">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <div class="avatar-circle-orange" id="ledgerAvatar">মর</div>
+                <div class="cust-header-title">
+                    <h3 id="ledgerCustName">মো: রাকিব উদ্দিন</h3>
+                    <span id="ledgerHeaderDue" style="color:var(--tally-red); font-weight:800;">পাবো ১,০২০.০০</span>
+                </div>
+            </div>
+            <div onclick="window.print()" style="cursor:pointer; font-weight:bold; color:var(--tally-red); font-size:0.85rem;">
+                <i class="fa-solid fa-arrow-down-to-line"></i> ডাউনলোড
+            </div>
+        </header>
+
+        <div style="padding: 12px 16px 0 16px;">
+            <div style="background:#fff; border-radius:10px; padding:12px; display:flex; align-items:center; gap:8px; border:1px solid #eee; margin-bottom:10px; cursor:pointer;" onclick="openTagadaScreen()">
+                <i class="fa-regular fa-bell" style="color:var(--tally-red);"></i>
+                <span style="font-weight:700; font-size:0.9rem;">তাগাদা মেসেজ পাঠাই</span>
+            </div>
+        </div>
+
+        <div class="ledger-notice-alert">
+            <span><i class="fa-solid fa-circle-info"></i> লেনদেন রেকর্ড এডিট/ডিলিট করতে লেনদেনের উপর ট্যাপ করুন।</span>
+            <i class="fa-solid fa-xmark" style="cursor:pointer;" onclick="this.parentElement.style.display='none'"></i>
+        </div>
+
+        <div class="ledger-table-header">
+            <div>লেনদেনের বিবরণ</div>
+            <div style="text-align:right;">দিলাম</div>
+            <div style="text-align:right;">পেলাম</div>
+        </div>
+
+        <div id="ledgerTransactionsContainer"></div>
+
+        <div class="ledger-footer-total">
+            <div>মোট</div>
+            <div style="text-align:right; color:var(--tally-red);" id="ledgerTotalDebit">০.০০</div>
+            <div style="text-align:right; color:var(--tally-green);" id="ledgerTotalCredit">০.০০</div>
+        </div>
+    </div>
+
+    <!-- ================= SCREEN 4: তাগাদা পেজ ================= -->
+    <div id="screenTagada" class="screen-container">
+        <header class="screen-nav-header">
+            <div class="nav-back-left">
+                <button class="back-circle-btn" onclick="switchScreen('screenEntry')">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <div class="cust-header-title"><h3 style="font-size:1.1rem;">তাগাদা পাঠাই</h3></div>
+            </div>
+        </header>
+
+        <div style="background:#fff; border-radius:12px; padding:12px 16px; margin:16px; display:flex; align-items:center; justify-content:space-between; border:1px solid #eee;">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <div class="avatar-circle-orange" id="tagadaAvatar">মর</div>
+                <div>
+                    <h4 id="tagadaCustName" style="font-weight:800; font-size:0.95rem;">মো: রাকিব উদ্দিন</h4>
+                    <span id="tagadaCustDue" style="color:var(--tally-red); font-weight:700; font-size:0.85rem;">পাবো ১,০২০.০০</span>
+                </div>
+            </div>
+            <span style="font-size:0.75rem; color:#757575;">সর্বশেষ লেনদেন<br>৯ মাস আগে</span>
+        </div>
+
+        <div class="tagada-preview-card">
+            <p id="tagadaSmsText">
+                বাকি <strong id="tagadaAmountBold">১,০২০</strong><br>
+                Mousumi Computer<br>
+                পে করুন <a href="#">https://tally.pe/mousumi</a><br><br>
+                <strong>Mousumi Computer - 01608314552</strong>
+            </p>
+            <button class="copy-link-btn" onclick="copyTagadaText()">
+                <i class="fa-regular fa-copy"></i> কপি লিংক
+            </button>
+        </div>
+
+        <div style="margin: 0 16px; border: 1.5px dashed #ff9800; border-radius: 12px; padding: 20px; text-align: center; background:#fff8e1;">
+            <i class="fa-solid fa-triangle-exclamation" style="font-size: 1.8rem; color:#ff9800; margin-bottom:8px;"></i>
+            <p style="font-size:0.85rem; color:#616161;">টালি-মেসেজ সংখ্যা অবশিষ্ট নেই।<br>অনুগ্রহ করে টালি-মেসেজ কিনুন।</p>
+            <a href="#" style="color:#d32f2f; font-weight:800; text-decoration:none; display:inline-block; margin-top:8px;">টালি-মেসেজ কিনি →</a>
+        </div>
+
+        <div style="text-align:center; margin-top:30px; font-weight:700; color:#424242;">তাগাদা পাঠাতে ট্যাপ করুন।</div>
+
+        <div class="tagada-action-footer">
+            <button class="btn-tagada-send" onclick="sendViaSMS()"><i class="fa-regular fa-envelope"></i> টালি-মেসেজ পাঠাই</button>
+            <button class="btn-tagada-send" style="border-color:#424242; color:#424242;" onclick="shareTagadaWhatsApp()"><i class="fa-solid fa-share-nodes"></i> শেয়ার করি</button>
+        </div>
+    </div>
+
+    <!-- নতুন কাস্টমার মোডাল -->
+    <div id="newCustModal" class="modal-overlay">
+        <div class="modal-sheet">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <h4 style="font-weight:800;">নতুন কাস্টমার যুক্ত করুন</h4>
+                <i class="fa-solid fa-xmark" style="font-size:1.2rem; cursor:pointer;" onclick="closeNewCustomerModal()"></i>
+            </div>
+            <input type="text" id="newCustName" placeholder="কাস্টমারের নাম লিখুন *">
+            <input type="tel" id="newCustPhone" placeholder="মোবাইল নম্বর লিখুন *">
+            <input type="text" id="newCustAddress" placeholder="ঠিকানা (ঐচ্ছিক)">
+            <input type="number" step="any" id="newCustOpening" placeholder="প্রারম্ভিক বকেয়া (৳ 0.00)">
+            <button class="btn-confirm-save" style="margin-top:10px;" onclick="saveNewCustomerToFirebase()">সংরক্ষণ করুন</button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK v10 (সরাসরি আসল Mousumi ডেটাবেজের সাথে কানেক্টেড) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA1PhRiTkICNCd8sA4he3ZxKjHtIzM0d5E",
+            authDomain: "mousumi-computer.firebaseapp.com",
+            databaseURL: "https://mousumi-computer-default-rtdb.firebaseio.com",
+            projectId: "mousumi-computer",
+            storageBucket: "mousumi-computer.firebasestorage.app",
+            messagingSenderId: "104820462623",
+            appId: "1:104820462623:web:e3abae9533cc841463712a"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth(app);
+
+        let customers = [];
+        let transactions = [];
+        let activeCustomer = null;
+        let selectedDate = new Date().toISOString().split('T')[0];
+
+        signInAnonymously(auth).catch((e) => console.log(e));
+
+        // লাইভ ডাটা লোড
+        onValue(ref(db, 'customers'), (snap) => {
+            const data = snap.val();
+            customers = data ? (Array.isArray(data) ? data : Object.values(data)) : [];
+            updateHomeTotals();
+            renderCustomerList();
+            if (activeCustomer) {
+                activeCustomer = customers.find(c => c.id === activeCustomer.id) || activeCustomer;
+                updateEntryScreenHeader();
+            }
+        });
+
+        onValue(ref(db, 'transactions'), (snap) => {
+            const data = snap.val();
+            transactions = data ? (Array.isArray(data) ? data : Object.values(data)) : [];
+            updateHomeTotals();
+            renderCustomerList();
+            if (activeCustomer) {
+                updateEntryScreenHeader();
+                renderLedgerTransactions();
+            }
+        });
+
+        function getCustomerDue(custId) {
+            const c = customers.find(item => item.id === custId);
+            if (!c) return 0;
+            let due = parseFloat(c.openingBalance) || 0;
+            transactions.filter(t => t.customerId === custId).forEach(t => {
+                due += (parseFloat(t.debit) || 0);
+                due -= (parseFloat(t.credit) || 0);
+            });
+            return due;
+        }
+
+        function updateHomeTotals() {
+            let totalReceivable = 0;
+            let totalPayable = 0;
+
+            customers.forEach(c => {
+                const bal = getCustomerDue(c.id);
+                if (bal > 0) totalReceivable += bal;
+                else if (bal < 0) totalPayable += Math.abs(bal);
+            });
+
+            document.getElementById('homeTotalReceivable').innerText = '৳ ' + Math.round(totalReceivable).toLocaleString('bn-BD');
+            document.getElementById('homeTotalPayable').innerText = '৳ ' + Math.round(totalPayable).toLocaleString('bn-BD');
+            document.getElementById('custCountLabel').innerText = `কাস্টমার ${customers.length} / সাপ্লায়ার ০`;
+        }
+
+        window.renderCustomerList = function(searchTerm = '') {
+            const container = document.getElementById('customerListContainer');
+            container.innerHTML = '';
+            searchTerm = searchTerm.trim().toLowerCase();
+
+            const filtered = customers.filter(c => 
+                (c.name && c.name.toLowerCase().includes(searchTerm)) ||
+                (c.phone && c.phone.includes(searchTerm))
+            );
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div style="text-align:center; padding:30px; color:#9e9e9e;">কোনো খাতা বা কাস্টমার মেলেনি!</div>';
+                return;
+            }
+
+            filtered.forEach(c => {
+                const due = getCustomerDue(c.id);
+                const initials = c.name.trim().substring(0, 2);
+
+                const card = document.createElement('div');
+                card.className = 'customer-card-item';
+                card.innerHTML = `
+                    <div class="cust-left">
+                        <div class="cust-avatar">${initials}</div>
+                        <div class="cust-info">
+                            <h4>${c.name}</h4>
+                            <span>${c.phone || 'মোবাইল নেই'}</span>
+                        </div>
+                    </div>
+                    <div class="cust-right">
+                        <span class="amount ${due >= 0 ? 'text-red' : 'text-green'}">
+                            ৳ ${Math.abs(due).toLocaleString('bn-BD', {minimumFractionDigits: 2})}
+                        </span>
+                        <i class="fa-solid fa-chevron-right" style="font-size:0.8rem; color:#bdbdbd;"></i>
+                    </div>
+                `;
+                card.onclick = () => openCustomerEntry(c);
+                container.appendChild(card);
+            });
+        };
+
+        window.switchScreen = function(screenId) {
+            document.querySelectorAll('.screen-container').forEach(sc => sc.classList.remove('active-screen'));
+            document.getElementById(screenId).classList.add('active-screen');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        window.openCustomerEntry = function(cust) {
+            activeCustomer = cust;
+            updateEntryScreenHeader();
+
+            document.getElementById('inputDebit').value = '';
+            document.getElementById('inputCredit').value = '';
+            document.getElementById('inputDesc').value = '';
+            document.getElementById('inputDebit').classList.remove('active-debit');
+            document.getElementById('inputCredit').classList.remove('active-credit');
+            document.getElementById('btnConfirmTx').disabled = true;
+
+            switchScreen('screenEntry');
+        };
+
+        function updateEntryScreenHeader() {
+            if (!activeCustomer) return;
+            const due = getCustomerDue(activeCustomer.id);
+            const initials = activeCustomer.name.trim().substring(0, 2);
+
+            document.getElementById('entryAvatar').innerText = initials;
+            document.getElementById('entryCustName').innerText = activeCustomer.name;
+            document.getElementById('entryCustPhone').innerText = activeCustomer.phone || 'মোবাইল নেই';
+
+            const dueText = due >= 0 ? `পাবো ৳ ${due.toLocaleString('bn-BD', {minimumFractionDigits: 2})}` : `দেবো ৳ ${Math.abs(due).toLocaleString('bn-BD', {minimumFractionDigits: 2})}`;
+            document.getElementById('entryCurrentDue').innerText = dueText;
+            document.getElementById('entryCurrentDue').className = due >= 0 ? 'text-red' : 'text-green';
+        }
+
+        window.onDualAmountChange = function(type) {
+            const debInp = document.getElementById('inputDebit');
+            const credInp = document.getElementById('inputCredit');
+            const btn = document.getElementById('btnConfirmTx');
+
+            if (type === 'debit') {
+                if (debInp.value) {
+                    credInp.value = '';
+                    debInp.classList.add('active-debit');
+                    credInp.classList.remove('active-credit');
+                    btn.disabled = false;
+                } else {
+                    debInp.classList.remove('active-debit');
+                    btn.disabled = true;
+                }
+            } else {
+                if (credInp.value) {
+                    debInp.value = '';
+                    credInp.classList.add('active-credit');
+                    debInp.classList.remove('active-debit');
+                    btn.disabled = false;
+                } else {
+                    credInp.classList.remove('active-credit');
+                    btn.disabled = true;
+                }
+            }
+        };
+
+        // লেনদেন ফায়ারবেসে সেভ (ঠিক quick_transaction_module এর মতন চাইল্ড নোডে)
+        window.saveTallyTransaction = async function() {
+            if (!activeCustomer) return;
+
+            const debitVal = parseFloat(document.getElementById('inputDebit').value) || 0;
+            const creditVal = parseFloat(document.getElementById('inputCredit').value) || 0;
+            const descVal = document.getElementById('inputDesc').value.trim() || (debitVal > 0 ? 'দিলাম/মাল বিক্রয়' : 'পেলাম/টাকা আদায়');
+            const timeStr = new Date().toTimeString().split(' ')[0].substring(0, 5);
+
+            if (debitVal <= 0 && creditVal <= 0) {
+                alert("দয়া করে টাকার পরিমাণ লিখুন!");
+                return;
+            }
+
+            const txId = 'tx_' + Date.now();
+            const txObj = {
+                id: txId,
+                customerId: activeCustomer.id,
+                type: debitVal > 0 ? 'Debit' : 'Credit',
+                debit: debitVal,
+                credit: creditVal,
+                date: selectedDate,
+                time: timeStr,
+                description: descVal,
+                timestamp: Date.now()
+            };
+
+            const btn = document.getElementById('btnConfirmTx');
+            btn.disabled = true;
+            btn.innerText = "সংরক্ষণ হচ্ছে...";
+
+            try {
+                await set(ref(db, `transactions/${txId}`), txObj);
+                alert("✅ লেনদেন সফলভাবে সংরক্ষণ করা হয়েছে!");
+                openLedgerScreen();
+            } catch (e) {
+                alert("ত্রুটি: " + e.message);
+                btn.disabled = false;
+                btn.innerText = "নিশ্চিত";
+            }
+        };
+
+        window.openLedgerScreen = function() {
+            if (!activeCustomer) return;
+            const initials = activeCustomer.name.trim().substring(0, 2);
+            const due = getCustomerDue(activeCustomer.id);
+
+            document.getElementById('ledgerAvatar').innerText = initials;
+            document.getElementById('ledgerCustName').innerText = activeCustomer.name;
+            document.getElementById('ledgerHeaderDue').innerText = (due >= 0 ? 'পাবো ' : 'দেবো ') + Math.abs(due).toLocaleString('bn-BD', {minimumFractionDigits: 2});
+
+            renderLedgerTransactions();
+            switchScreen('screenLedger');
+        };
+
+        function renderLedgerTransactions() {
+            const container = document.getElementById('ledgerTransactionsContainer');
+            container.innerHTML = '';
+
+            const custTxs = transactions
+                .filter(t => t.customerId === activeCustomer.id)
+                .sort((a,b) => b.id.localeCompare(a.id));
+
+            let totalD = 0;
+            let totalC = 0;
+
+            custTxs.forEach(t => {
+                totalD += (parseFloat(t.debit) || 0);
+                totalC += (parseFloat(t.credit) || 0);
+
+                const row = document.createElement('div');
+                row.className = 'ledger-row';
+                row.innerHTML = `
+                    <div class="col-desc">
+                        <h5>${t.date}</h5>
+                        <span>${t.time} • ${t.description || ''}</span>
+                    </div>
+                    <div style="text-align:right; font-weight:800; color:var(--tally-red);">
+                        ${t.debit > 0 ? parseFloat(t.debit).toLocaleString('bn-BD', {minimumFractionDigits: 2}) : '-'}
+                    </div>
+                    <div style="text-align:right; font-weight:800; color:var(--tally-green);">
+                        ${t.credit > 0 ? parseFloat(t.credit).toLocaleString('bn-BD', {minimumFractionDigits: 2}) : '-'}
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            document.getElementById('ledgerTotalDebit').innerText = totalD.toLocaleString('bn-BD', {minimumFractionDigits: 2});
+            document.getElementById('ledgerTotalCredit').innerText = totalC.toLocaleString('bn-BD', {minimumFractionDigits: 2});
+        }
+
+        window.openTagadaScreen = function() {
+            if (!activeCustomer) return;
+            const due = getCustomerDue(activeCustomer.id);
+            const initials = activeCustomer.name.trim().substring(0, 2);
+
+            document.getElementById('tagadaAvatar').innerText = initials;
+            document.getElementById('tagadaCustName').innerText = activeCustomer.name;
+            document.getElementById('tagadaCustDue').innerText = `পাবো ৳ ${due.toLocaleString('bn-BD', {minimumFractionDigits: 2})}`;
+            document.getElementById('tagadaAmountBold').innerText = `৳ ${due.toLocaleString('bn-BD')}`;
+
+            switchScreen('screenTagada');
+        };
+
+        window.copyTagadaText = function() {
+            const due = getCustomerDue(activeCustomer.id);
+            const txt = `সম্মানিত গ্রাহক ${activeCustomer.name}, Mousumi Computer-এ আপনার পূর্বের বকেয়া ৳ ${due} টাকা পরিশোধ করার জন্য অনুরোধ রইল। যোগাযোগ: 01608314552`;
+            navigator.clipboard.writeText(txt).then(() => alert("তাগাদা মেসেজ কপি হয়েছে!"));
+        };
+
+        window.shareTagadaWhatsApp = function() {
+            const due = getCustomerDue(activeCustomer.id);
+            const txt = `সম্মানিত গ্রাহক ${activeCustomer.name}, Mousumi Computer-এ আপনার বকেয়া ৳ ${due} টাকা। অনুগ্রহ করে পরিশোধ করুন।`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(txt)}`);
+        };
+
+        window.sendViaSMS = function() {
+            const due = getCustomerDue(activeCustomer.id);
+            const phone = activeCustomer.phone || '';
+            const txt = `Mousumi Computer: আপনার বকেয়া ৳ ${due} টাকা পরিশোধ করুন।`;
+            window.open(`sms:${phone}?body=${encodeURIComponent(txt)}`);
+        };
+
+        window.openNewCustomerModal = () => document.getElementById('newCustModal').classList.add('active');
+        window.closeNewCustomerModal = () => document.getElementById('newCustModal').classList.remove('active');
+
+        window.saveNewCustomerToFirebase = async function() {
+            const name = document.getElementById('newCustName').value.trim();
+            const phone = document.getElementById('newCustPhone').value.trim();
+            const address = document.getElementById('newCustAddress').value.trim();
+            const opening = parseFloat(document.getElementById('newCustOpening').value) || 0;
+
+            if (!name) { alert("কাস্টমারের নাম লিখুন!"); return; }
+
+            const newCust = {
+                id: 'cust_' + Date.now(),
+                name,
+                phone,
+                address,
+                openingBalance: opening,
+                status: 'Active'
+            };
+
+            try {
+                await set(ref(db, `customers/${newCust.id}`), newCust);
+                alert("🎉 নতুন কাস্টমার যুক্ত হয়েছে!");
+                document.getElementById('newCustName').value = '';
+                document.getElementById('newCustPhone').value = '';
+                closeNewCustomerModal();
+                openCustomerEntry(newCust);
+            } catch (e) {
+                alert("ত্রুটি: " + e.message);
+            }
+        };
+
+        window.pickEntryDate = function() {
+            const p = prompt("তারিখ লিখুন (YYYY-MM-DD):", selectedDate);
+            if (p) {
+                selectedDate = p;
+                document.getElementById('displaySelectedDate').innerText = p;
+            }
+        };
+    </script>
+</body>
+</html>
