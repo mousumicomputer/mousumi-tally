@@ -16,15 +16,12 @@
     
     <style>
         :root {
-            /* Mousumi Premium Fintech Palette (টালিখাতা থেকে সম্পূর্ণ ভিন্ন) */
-            --brand-primary: #4338ca;      /* রাজকীয় ইন্ডিগো */
-            --brand-dark: #0f172a;         /* ডার্ক নেভি */
+            --brand-primary: #4338ca;
+            --brand-dark: #0f172a;
             --brand-gradient: linear-gradient(135deg, #0f172a 0%, #312e81 50%, #4338ca 100%);
-            --accent-cyan: #0284c7;        /* ক্যাশলেস পে সায়ান */
-            --due-red: #e11d48;            /* বকেয়া/দিলাম রোজ-রেড */
-            --receive-green: #059669;      /* জমা/পেলাম এমারেল্ড গ্রিন */
-            --app-bg: #f8fafc;             /* ব্যাকগ্রাউন্ড */
-            --card-bg: #ffffff;
+            --due-red: #e11d48;
+            --receive-green: #059669;
+            --app-bg: #f8fafc;
             --border-ui: #e2e8f0;
             --text-main: #0f172a;
             --text-muted: #64748b;
@@ -68,7 +65,7 @@
             display: block;
         }
 
-        /* SCREEN 1: নতুন প্রিমিয়াম হেডার */
+        /* হেডার */
         .mousumi-header {
             background: var(--brand-gradient);
             color: #ffffff;
@@ -112,85 +109,43 @@
             position: relative;
         }
 
-        .h-btn i {
-            font-size: 1.15rem;
-            margin-bottom: 2px;
-        }
+        .h-btn i { font-size: 1.15rem; margin-bottom: 2px; }
 
         .pulse-badge {
-            position: absolute;
-            top: -4px;
-            right: -6px;
-            background: #10b981;
-            color: #ffffff;
-            font-size: 0.65rem;
-            font-weight: 800;
-            padding: 1px 5px;
-            border-radius: 10px;
+            position: absolute; top: -4px; right: -6px;
+            background: #10b981; color: #ffffff; font-size: 0.65rem;
+            font-weight: 800; padding: 1px 5px; border-radius: 10px;
         }
 
-        /* ক্যাশলেস ব্যানার */
         .fintech-banner {
             margin: 12px 16px;
             background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
             border: 1px solid #c7d2fe;
-            border-radius: 16px;
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 8px rgba(79, 70, 229, 0.05);
+            border-radius: 16px; padding: 12px 16px;
+            display: flex; align-items: center; justify-content: space-between;
         }
-
         .fintech-banner h4 { font-size: 0.95rem; color: #3730a3; font-weight: 800; }
         .fintech-banner p { font-size: 0.75rem; color: #64748b; }
 
-        /* সার্ভিস আইকন গ্রিড */
         .service-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            padding: 6px 16px 14px 16px;
-            text-align: center;
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 12px; padding: 6px 16px 14px 16px; text-align: center;
         }
-
-        .service-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-        }
-
+        .service-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         .service-icon-box {
-            width: 48px;
-            height: 48px;
-            border-radius: 16px;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            margin-bottom: 6px;
+            width: 48px; height: 48px; border-radius: 16px; background: #ffffff;
+            border: 1px solid #e2e8f0; display: flex; align-items: center;
+            justify-content: center; font-size: 1.3rem; margin-bottom: 6px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-            transition: transform 0.15s;
         }
-        .service-icon-box:active { transform: scale(0.92); }
-
         .service-item span { font-size: 0.75rem; font-weight: 700; color: #334155; }
 
         /* মোট পাবো / মোট দেবো কার্ড */
         .summary-dashboard-card {
-            background: #ffffff;
-            margin: 0 16px 14px 16px;
-            border-radius: 16px;
-            padding: 16px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            background: #ffffff; margin: 0 16px 14px 16px; border-radius: 16px;
+            padding: 16px; display: grid; grid-template-columns: 1fr 1fr;
             border: 1px solid var(--border-ui);
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
         }
-
         .summary-box { text-align: center; }
         .summary-box:first-child { border-right: 1px solid #f1f5f9; }
         .summary-box h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 2px; }
@@ -198,224 +153,113 @@
         .text-red { color: var(--due-red); }
         .text-green { color: var(--receive-green); }
 
-        /* সার্চ বার */
         .search-action-bar {
-            padding: 0 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
+            padding: 0 16px; display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
         }
-
         .search-input-wrap {
-            flex: 1;
-            background: #ffffff;
-            border-radius: 25px;
-            padding: 8px 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border: 1.5px solid #cbd5e1;
+            flex: 1; background: #ffffff; border-radius: 25px; padding: 8px 16px;
+            display: flex; align-items: center; gap: 10px; border: 1.5px solid #cbd5e1;
         }
-
-        .search-input-wrap input {
-            border: none;
-            outline: none;
-            width: 100%;
-            font-size: 0.95rem;
-            background: transparent;
-        }
+        .search-input-wrap input { border: none; outline: none; width: 100%; font-size: 0.95rem; background: transparent; }
 
         .list-info-header {
-            padding: 0 18px 8px 18px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: space-between;
+            padding: 0 18px 8px 18px; font-size: 0.85rem; font-weight: 700;
+            color: var(--text-muted); display: flex; justify-content: space-between;
         }
 
-        /* কাস্টমার তালিকা */
         .customer-list-wrap {
-            padding: 0 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            padding: 0 16px; display: flex; flex-direction: column; gap: 8px;
         }
-
         .customer-card-item {
-            background: #ffffff;
-            border-radius: 14px;
-            padding: 12px 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid var(--border-ui);
-            cursor: pointer;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-            transition: all 0.15s;
+            background: #ffffff; border-radius: 14px; padding: 12px 14px;
+            display: flex; align-items: center; justify-content: space-between;
+            border: 1px solid var(--border-ui); cursor: pointer;
         }
-        .customer-card-item:active { transform: scale(0.98); }
-
         .cust-left { display: flex; align-items: center; gap: 12px; }
         .cust-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: #e0e7ff;
-            color: var(--brand-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1rem;
+            width: 44px; height: 44px; border-radius: 12px; background: #e0e7ff;
+            color: var(--brand-primary); display: flex; align-items: center;
+            justify-content: center; font-weight: 800; font-size: 1rem;
         }
-
         .cust-info h4 { font-size: 0.98rem; font-weight: 800; color: var(--text-main); margin-bottom: 2px; }
         .cust-info span { font-size: 0.78rem; color: var(--text-muted); }
         .cust-right { text-align: right; display: flex; align-items: center; gap: 8px; }
         .cust-right .amount { font-size: 1.05rem; font-weight: 800; }
 
-        /* ফ্লোটিং বাটন (রয়েল ইন্ডিগো থিম) */
         .fab-add-customer {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background: linear-gradient(135deg, #3730a3, #4338ca);
-            color: #ffffff;
-            padding: 12px 22px;
-            border-radius: 30px;
-            box-shadow: 0 6px 20px rgba(67, 56, 202, 0.4);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            z-index: 99;
+            position: fixed; bottom: 80px; right: 20px;
+            background: linear-gradient(135deg, #3730a3, #4338ca); color: #ffffff;
+            padding: 12px 22px; border-radius: 30px;
+            box-shadow: 0 6px 20px rgba(67, 56, 202, 0.4); display: flex;
+            align-items: center; gap: 8px; font-weight: 700; font-size: 0.95rem;
+            cursor: pointer; z-index: 99;
         }
 
-        /* বটম ন্যাভ বার */
         .tally-bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: #ffffff;
-            border-top: 1px solid var(--border-ui);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 1000;
+            position: fixed; bottom: 0; left: 0; right: 0; height: 60px;
+            background: #ffffff; border-top: 1px solid var(--border-ui);
+            display: flex; justify-content: space-around; align-items: center; z-index: 1000;
         }
-
         .b-nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--text-muted);
-            font-size: 0.72rem;
-            font-weight: 700;
-            cursor: pointer;
-            text-decoration: none;
+            display: flex; flex-direction: column; align-items: center;
+            color: var(--text-muted); font-size: 0.72rem; font-weight: 700;
+            cursor: pointer; text-decoration: none;
         }
-
         .b-nav-item.active { color: var(--brand-primary); }
         .b-nav-item i { font-size: 1.25rem; margin-bottom: 2px; }
 
         /* SCREEN 2: এন্ট্রি পেজ */
         .screen-nav-header {
-            background: #ffffff;
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--border-ui);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background: #ffffff; padding: 12px 16px; display: flex;
+            align-items: center; justify-content: space-between;
+            border-bottom: 1px solid var(--border-ui); position: sticky; top: 0; z-index: 100;
         }
-
         .nav-back-left { display: flex; align-items: center; gap: 12px; }
         .back-circle-btn { background: none; border: none; font-size: 1.2rem; color: #475569; cursor: pointer; }
         .avatar-circle-orange {
             width: 42px; height: 42px; border-radius: 12px;
-            background: linear-gradient(135deg, #0284c7, #4338ca); color: #fff; display: flex;
-            align-items: center; justify-content: center; font-weight: bold;
+            background: linear-gradient(135deg, #0284c7, #4338ca); color: #fff;
+            display: flex; align-items: center; justify-content: center; font-weight: bold;
         }
-
         .cust-header-title h3 { font-size: 1rem; font-weight: 800; color: #0f172a; }
         .cust-header-title span { font-size: 0.78rem; color: var(--text-muted); }
 
         .screen2-body { padding: 16px; }
-
-        .due-tagada-row {
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;
-        }
-
+        .due-tagada-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
         .due-text-box h4 { font-size: 1.2rem; font-weight: 800; color: var(--due-red); }
         .due-text-box span { font-size: 0.78rem; color: var(--text-muted); }
-
         .pill-btn {
-            background: #f1f5f9; border: 1px solid #cbd5e1;
-            padding: 7px 14px; border-radius: 20px; font-size: 0.85rem;
-            font-weight: 700; color: #334155; display: flex; align-items: center; gap: 6px; cursor: pointer;
+            background: #f1f5f9; border: 1px solid #cbd5e1; padding: 7px 14px;
+            border-radius: 20px; font-size: 0.85rem; font-weight: 700; color: #334155;
+            display: flex; align-items: center; gap: 6px; cursor: pointer;
         }
 
-        /* দিলাম / পেলাম পাশাপাশি বক্স */
-        .dual-inputs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 14px;
-        }
-
+        .dual-inputs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
         .tally-box-input {
-            width: 100%;
-            height: 54px;
-            border: 1.5px solid #cbd5e1;
-            border-radius: 12px;
-            padding: 0 14px;
-            font-size: 1.15rem;
-            font-weight: 800;
-            outline: none;
-            background: #ffffff;
-            transition: all 0.2s;
+            width: 100%; height: 54px; border: 1.5px solid #cbd5e1; border-radius: 12px;
+            padding: 0 14px; font-size: 1.15rem; font-weight: 800; outline: none; background: #ffffff;
         }
-
         .tally-box-input.active-debit { border-color: var(--due-red); background: #fff1f2; color: var(--due-red); }
         .tally-box-input.active-credit { border-color: var(--receive-green); background: #ecfdf5; color: var(--receive-green); }
 
         .desc-box-wrap { position: relative; margin-bottom: 14px; }
         .desc-box-wrap i { position: absolute; left: 14px; top: 16px; color: #94a3b8; }
         .desc-box-input {
-            width: 100%; height: 50px; border: 1.5px solid #cbd5e1;
-            border-radius: 12px; padding: 0 14px 0 42px; font-size: 0.95rem; outline: none; background: #ffffff;
+            width: 100%; height: 50px; border: 1.5px solid #cbd5e1; border-radius: 12px;
+            padding: 0 14px 0 42px; font-size: 0.95rem; outline: none; background: #ffffff;
         }
 
-        .date-toggle-bar {
-            display: grid; grid-template-columns: 1.2fr 1.4fr 0.8fr;
-            gap: 8px; align-items: center; margin-bottom: 24px;
-        }
-
+        .date-toggle-bar { display: grid; grid-template-columns: 1.2fr 1.4fr 0.8fr; gap: 8px; align-items: center; margin-bottom: 24px; }
         .dt-item-btn {
-            background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px;
-            padding: 8px 10px; display: flex; align-items: center; justify-content: center;
-            gap: 6px; font-size: 0.78rem; font-weight: 700; color: #475569; cursor: pointer;
+            background: #ffffff; border: 1px solid #cbd5e1; border-radius: 20px; padding: 8px 10px;
+            display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 0.78rem;
+            font-weight: 700; color: #475569; cursor: pointer;
         }
 
-        /* মেসেজ সুইচ */
         .switch { position: relative; display: inline-block; width: 38px; height: 22px; margin-left: 6px; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider {
-            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #cbd5e1; transition: .3s; border-radius: 34px;
-        }
-        .slider:before {
-            position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px;
-            background-color: white; transition: .3s; border-radius: 50%;
-        }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .3s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
         input:checked + .slider { background-color: var(--brand-primary); }
         input:checked + .slider:before { transform: translateX(16px); }
 
@@ -428,25 +272,23 @@
 
         /* SCREEN 3: লেজার */
         .ledger-notice-alert {
-            background: #eef2ff; color: #3730a3; padding: 10px 14px;
-            display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; font-weight: 700; margin-bottom: 10px;
+            background: #eef2ff; color: #3730a3; padding: 10px 14px; display: flex;
+            align-items: center; justify-content: space-between; font-size: 0.82rem; font-weight: 700; margin-bottom: 10px;
         }
-
         .ledger-table-header {
-            display: grid; grid-template-columns: 2fr 1fr 1fr;
-            padding: 10px 14px; background: #f1f5f9; font-size: 0.82rem; font-weight: 800; color: #475569; border-bottom: 1px solid var(--border-ui);
+            display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 10px 14px;
+            background: #f1f5f9; font-size: 0.82rem; font-weight: 800; color: #475569; border-bottom: 1px solid var(--border-ui);
         }
-
         .ledger-row {
-            display: grid; grid-template-columns: 2fr 1fr 1fr;
-            padding: 12px 14px; border-bottom: 1px solid #f1f5f9; background: #ffffff; font-size: 0.88rem; align-items: center;
+            display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 12px 14px;
+            border-bottom: 1px solid #f1f5f9; background: #ffffff; font-size: 0.88rem; align-items: center;
         }
         .ledger-row .col-desc h5 { font-size: 0.88rem; font-weight: 700; color: #0f172a; }
         .ledger-row .col-desc span { font-size: 0.72rem; color: var(--text-muted); }
 
         .ledger-footer-total {
-            display: grid; grid-template-columns: 2fr 1fr 1fr;
-            padding: 14px; background: #ffffff; border-top: 2px solid var(--border-ui); font-weight: 800; font-size: 0.95rem;
+            display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 14px;
+            background: #ffffff; border-top: 2px solid var(--border-ui); font-weight: 800; font-size: 0.95rem;
         }
 
         /* SCREEN 4: তাগাদা */
@@ -455,9 +297,9 @@
             padding: 20px; margin: 16px; text-align: center; line-height: 1.6;
         }
         .copy-link-btn {
-            margin-top: 14px; padding: 8px 20px; border-radius: 20px;
-            background: #eef2ff; color: var(--brand-primary); border: 1px solid #c7d2fe;
-            font-weight: 700; font-size: 0.88rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+            margin-top: 14px; padding: 8px 20px; border-radius: 20px; background: #eef2ff;
+            color: var(--brand-primary); border: 1px solid #c7d2fe; font-weight: 700;
+            font-size: 0.88rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
         }
         .tagada-action-footer {
             display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px;
@@ -465,13 +307,14 @@
         }
         .btn-tagada-send {
             height: 48px; border-radius: 24px; border: 1.5px solid var(--brand-primary);
-            background: #ffffff; color: var(--brand-primary); font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+            background: #ffffff; color: var(--brand-primary); font-weight: 800; display: flex;
+            align-items: center; justify-content: center; gap: 8px; cursor: pointer;
         }
 
-        /* নতুন কাস্টমার মোডাল */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); display: none; align-items: flex-end; z-index: 9999;
+            background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); display: none;
+            align-items: flex-end; z-index: 9999;
         }
         .modal-overlay.active { display: flex; }
         .modal-sheet {
@@ -482,9 +325,34 @@
             width: 100%; height: 48px; border: 1.5px solid #cbd5e1; border-radius: 12px;
             padding: 0 14px; font-size: 0.95rem; margin-bottom: 12px; outline: none;
         }
+
+        /* অথেনটিকেশন প্রম্পট মোডাল */
+        .auth-prompt-card {
+            background: #ffffff; width: 90%; max-width: 380px; margin: auto;
+            border-radius: 20px; padding: 24px; text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+        }
     </style>
 </head>
 <body>
+
+    <!-- ফায়ারবেস লগইন মোডাল (যদি ব্রাউজারে পাসওয়ার্ড সেভ না থাকে) -->
+    <div id="authModal" class="modal-overlay" style="align-items: center;">
+        <div class="auth-prompt-card">
+            <div style="width: 55px; height: 55px; border-radius: 50%; background: #e0e7ff; color: #4338ca; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 15px auto;">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin-bottom: 6px;">এডমিন পাসওয়ার্ড দিন</h3>
+            <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 18px;">ডাটাবেজে নিরাপদ সংযোগের জন্য আপনার অ্যাডমিন পাসওয়ার্ডটি লিখুন (একবারই দিতে হবে):</p>
+            
+            <input type="password" id="authPasswordInput" placeholder="••••••••" style="width: 100%; height: 46px; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 0 14px; font-size: 1.1rem; text-align: center; margin-bottom: 15px; outline: none;">
+            <p id="authErrorMsg" style="color: #e11d48; font-size: 0.8rem; font-weight: bold; display: none; margin-bottom: 10px;">ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।</p>
+            
+            <button class="btn-confirm-save" onclick="handleManualAuth()" style="height: 46px; font-size: 1rem;">
+                লগইন করুন
+            </button>
+        </div>
+    </div>
 
     <!-- ================= SCREEN 1: হোম স্ক্রিন ================= -->
     <div id="screenHome" class="screen-container active-screen">
@@ -497,7 +365,7 @@
             <div class="header-actions">
                 <a href="#" class="h-btn">
                     <i class="fa-regular fa-bell"></i>
-                    <span class="pulse-badge">Live</span>
+                    <span class="pulse-badge" id="liveStatusBadge">Live</span>
                     <span>অ্যাক্টিভ</span>
                 </a>
                 <a href="#" class="h-btn" onclick="location.reload()">
@@ -515,7 +383,7 @@
             <i class="fa-solid fa-shield-halved" style="font-size: 2.2rem; color: #4338ca;"></i>
         </div>
 
-        <!-- সার্ভিস গ্রিড আইকনস (আসল আইকন ও কালার সহ) -->
+        <!-- সার্ভিস গ্রিড আইকনস -->
         <div class="service-grid">
             <div class="service-item" onclick="openNewCustomerModal()">
                 <div class="service-icon-box" style="color:#059669;"><i class="fa-solid fa-user-plus"></i></div>
@@ -525,7 +393,7 @@
                 <div class="service-icon-box" style="color:#4f46e5;"><i class="fa-solid fa-boxes-stacked"></i></div>
                 <span>স্টক হিসাব</span>
             </div>
-            <div class="service-item" onclick="alert('দ্রুত নোটে কোনো ডেটা নেই')">
+            <div class="service-item">
                 <div class="service-icon-box" style="color:#d97706;"><i class="fa-solid fa-clipboard-list"></i></div>
                 <span>ব্যবসার নোট</span>
             </div>
@@ -545,9 +413,9 @@
                 <div class="service-icon-box" style="color:#e11d48;"><i class="fa-solid fa-message"></i></div>
                 <span>এসএমএস</span>
             </div>
-            <div class="service-item" onclick="alert('ক্যাশবক্স লাইভ ব্যালেন্স অ্যাডমিন প্যানেল থেকে দেখুন')">
-                <div class="service-icon-box" style="color:#ea580c;"><i class="fa-solid fa-wallet"></i></div>
-                <span>ক্যাশবক্স</span>
+            <div class="service-item" onclick="logoutApp()">
+                <div class="service-icon-box" style="color:#ea580c;"><i class="fa-solid fa-arrow-right-from-bracket"></i></div>
+                <span>লগআউট</span>
             </div>
         </div>
 
@@ -569,7 +437,7 @@
                 <i class="fa-solid fa-magnifying-glass" style="color: #64748b;"></i>
                 <input type="text" id="custSearchInput" placeholder="গ্রাহকের নাম বা মোবাইল লিখে খুঁজুন..." oninput="renderCustomerList(this.value)">
             </div>
-            <div class="service-icon-box" style="width:40px; height:40px; border-radius:50%; margin:0;"><i class="fa-solid fa-arrow-down-wide-short"></i></div>
+            <div class="service-icon-box" style="width:40px; height:40px; border-radius:50%; margin:0;" onclick="openQuickDueList()"><i class="fa-solid fa-arrow-down-wide-short"></i></div>
             <div class="service-icon-box" style="width:40px; height:40px; border-radius:50%; margin:0;" onclick="window.print()"><i class="fa-solid fa-print"></i></div>
         </div>
 
@@ -610,7 +478,7 @@
                 <i class="fa-solid fa-rotate"></i>
                 <span>রিফ্রেশ</span>
             </a>
-            <a href="#" class="b-nav-item" onclick="alert('Mousumi Computer Accounting ERP v2.0')">
+            <a href="#" class="b-nav-item" onclick="alert('Mousumi POS v2.0 - Connected')">
                 <i class="fa-solid fa-ellipsis"></i>
                 <span>মেন্যু</span>
             </a>
@@ -787,11 +655,11 @@
         </div>
     </div>
 
-    <!-- Firebase SDK v10 (সরাসরি আসল Mousumi ডেটাবেজের সাথে লাইভ কানেকশন) -->
+    <!-- Firebase SDK v10 (অ্যাডমিন অথেনটিকেশন ব্রিজ সহ) -->
     <script type="module">
         import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, set, onValue, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyA1PhRiTkICNCd8sA4he3ZxKjHtIzM0d5E",
@@ -807,77 +675,99 @@
         const app = existingApps.length > 0 ? existingApps[0] : initializeApp(firebaseConfig);
         const db = getDatabase(app);
         const auth = getAuth(app);
+        const adminEmail = "mousumicomputer.org@gmail.com";
 
         let customers = [];
         let transactions = [];
         let activeCustomer = null;
         let selectedDate = new Date().toISOString().split('T')[0];
 
-        // অ্যানোনিমাস লগইন নিশ্চিত করা
-        signInAnonymously(auth).catch((err) => {
-            console.log("Auth Status:", err.message);
+        // ১. অথেনটিকেশন চেকার
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById('authModal').style.display = 'none';
+                document.getElementById('liveStatusBadge').innerText = "Live";
+                startRealtimeListeners();
+            } else {
+                // পূর্বে সেভ করা পাসওয়ার্ড দিয়ে অটো লগইন চেষ্টা
+                const savedPass = localStorage.getItem('mousumi_admin_pass');
+                if (savedPass) {
+                    signInWithEmailAndPassword(auth, adminEmail, savedPass)
+                        .catch(() => {
+                            document.getElementById('authModal').style.display = 'flex';
+                        });
+                } else {
+                    document.getElementById('authModal').style.display = 'flex';
+                }
+            }
         });
 
-        // ফায়ারবেস থেকে যেকোনো ফরম্যাটে আসা ডাটাকে অবজেক্টে রূপান্তর
+        // ম্যানুয়াল লগইন হ্যান্ডলার
+        window.handleManualAuth = async function() {
+            const pass = document.getElementById('authPasswordInput').value;
+            const errEl = document.getElementById('authErrorMsg');
+            errEl.style.display = 'none';
+
+            if (!pass) {
+                errEl.innerText = "পাসওয়ার্ড লিখুন!";
+                errEl.style.display = 'block';
+                return;
+            }
+
+            try {
+                await signInWithEmailAndPassword(auth, adminEmail, pass);
+                localStorage.setItem('mousumi_admin_pass', pass); // পরবর্তীতে অটো লগইনের জন্য সেভ
+                document.getElementById('authModal').style.display = 'none';
+            } catch (err) {
+                errEl.innerText = "ভুল পাসওয়ার্ড! (এডমিন প্যানেলের পাসওয়ার্ড দিন)";
+                errEl.style.display = 'block';
+            }
+        };
+
+        window.logoutApp = function() {
+            if (confirm("লগআউট করতে চান?")) {
+                localStorage.removeItem('mousumi_admin_pass');
+                signOut(auth);
+                location.reload();
+            }
+        };
+
+        // নিরাপদ অ্যারে পার্সার
         function safeParseArray(data) {
             if (!data) return [];
             if (Array.isArray(data)) return data.filter(Boolean);
-            return Object.keys(data).map(k => {
-                if (typeof data[k] === 'object' && data[k] !== null) {
-                    return { id: k, ...data[k] };
-                }
-                return { id: k, value: data[k] };
-            });
+            return Object.keys(data).map(k => ({
+                id: k,
+                ...data[k]
+            }));
         }
 
-        // গ্রাহক ডাটা রিড করা
-        const custRef = ref(db, 'customers');
-        onValue(custRef, (snap) => {
-            const data = snap.val();
-            customers = safeParseArray(data);
-            
-            // যদি ডাটা না আসে তবে ইআরপি নোড চেক করা (fallback)
-            if (customers.length === 0) {
-                get(ref(db, 'erp/customers')).then((erpSnap) => {
-                    if (erpSnap.exists()) {
-                        customers = safeParseArray(erpSnap.val());
-                        updateHomeTotals();
-                        renderCustomerList();
-                    }
-                });
-            }
+        // ২. ডাটাবেজ লিসেনার (লগইন সফল হলে চালু হবে)
+        function startRealtimeListeners() {
+            onValue(ref(db, 'customers'), (snap) => {
+                const data = snap.val();
+                customers = safeParseArray(data);
+                updateHomeTotals();
+                renderCustomerList();
+                if (activeCustomer) {
+                    activeCustomer = customers.find(c => c.id === activeCustomer.id) || activeCustomer;
+                    updateEntryScreenHeader();
+                }
+            }, (error) => {
+                console.error("Customers read error:", error);
+            });
 
-            updateHomeTotals();
-            renderCustomerList();
-            if (activeCustomer) {
-                activeCustomer = customers.find(c => c.id === activeCustomer.id) || activeCustomer;
-                updateEntryScreenHeader();
-            }
-        }, (error) => {
-            console.error("Customers Firebase Error:", error);
-            document.getElementById('customerListContainer').innerHTML = `
-                <div style="text-align:center; padding:25px; color:#e11d48;">
-                    <i class="fa-solid fa-triangle-exclamation fa-2x"></i>
-                    <p style="margin-top:8px;">ডাটাবেজে পারমিশন ইরর: ${error.message}</p>
-                </div>
-            `;
-        });
-
-        // লেনদেন ডাটা রিড করা
-        const txRef = ref(db, 'transactions');
-        onValue(txRef, (snap) => {
-            const data = snap.val();
-            transactions = safeParseArray(data);
-            
-            updateHomeTotals();
-            renderCustomerList();
-            if (activeCustomer) {
-                updateEntryScreenHeader();
-                renderLedgerTransactions();
-            }
-        }, (error) => {
-            console.error("Transactions Firebase Error:", error);
-        });
+            onValue(ref(db, 'transactions'), (snap) => {
+                const data = snap.val();
+                transactions = safeParseArray(data);
+                updateHomeTotals();
+                renderCustomerList();
+                if (activeCustomer) {
+                    updateEntryScreenHeader();
+                    renderLedgerTransactions();
+                }
+            });
+        }
 
         function getCustomerDue(custId) {
             const c = customers.find(item => item.id === custId);
