@@ -7,9 +7,12 @@
     <!-- Web App Meta -->
     <meta name="theme-color" content="#d32f2f">
     <link rel="icon" type="image/x-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEifAQVAOjeF0ccNQdBRY2gpfOlc19vjYbQiNjCUUJ9jJqxHEjVJB7nhST4fbzYcdaaV3DtoBrxxrhi4nQJsuwHoWnEmQKud8muKsZIRcWV6YgFLEmdsDc8TRv8Vcmw5jktkvXt4cnlRnbxOW8MlFzlJ4P7QSA7E1Owl9bxDsaW7wjMJQ91bdczQa5zjxu94/s1600/Screenshot_1.jpg">
-    <!-- FontAwesome & Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6.5.1 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -25,8 +28,17 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Tiro Bangla', 'Plus Jakarta Sans', sans-serif !important;
             -webkit-tap-highlight-color: transparent;
+        }
+
+        /* শুধু টেক্সট এলিমেন্টে বাংলা ফন্ট, আইকনে যেন ফন্ট না ভাঙে */
+        body, button, input, select, textarea, h1, h2, h3, h4, h5, h6, p, span, div, a {
+            font-family: 'Tiro Bangla', 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* ফন্ট অসাম আইকনের নিজস্ব ফন্ট বজায় রাখা (বক্স সমস্যা সমাধান) */
+        .fa, .fas, .far, .fal, .fad, .fab, .fa-solid, .fa-regular, .fa-brands {
+            font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
         }
 
         body {
@@ -52,7 +64,7 @@
             display: block;
         }
 
-        /* SCREEN 1: HEADER (ছবি ১ অনুযায়ী) */
+        /* SCREEN 1: HEADER */
         .tally-header {
             background-color: var(--tally-red);
             color: #ffffff;
@@ -296,7 +308,7 @@
         .b-nav-item.active { color: var(--tally-red); }
         .b-nav-item i { font-size: 1.25rem; margin-bottom: 2px; }
 
-        /* SCREEN 2: এন্ট্রি পেজ (ছবি ২ অনুযায়ী) */
+        /* SCREEN 2: এন্ট্রি পেজ */
         .screen-nav-header {
             background: #ffffff;
             padding: 12px 16px;
@@ -397,7 +409,7 @@
         }
         .btn-confirm-save:disabled { background: #e0e0e0; color: #9e9e9e; box-shadow: none; cursor: not-allowed; }
 
-        /* SCREEN 3: লেজার (ছবি ৩ অনুযায়ী) */
+        /* SCREEN 3: লেজার */
         .ledger-notice-alert {
             background: #e1f5fe; color: #0277bd; padding: 10px 14px;
             display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; font-weight: 700; margin-bottom: 10px;
@@ -420,7 +432,7 @@
             padding: 14px; background: #ffffff; border-top: 2px solid #e0e0e0; font-weight: 800; font-size: 0.95rem;
         }
 
-        /* SCREEN 4: তাগাদা (ছবি ৪ অনুযায়ী) */
+        /* SCREEN 4: তাগাদা */
         .tagada-preview-card {
             background: #ffffff; border-radius: 12px; border: 1px solid #eeeeee;
             padding: 20px; margin: 16px; text-align: center; line-height: 1.6;
@@ -482,10 +494,10 @@
                 <h4>বাংলা QR পেমেন্টে সার্ভিস চার্জ ফ্রি!*</h4>
                 <p>Mousumi Computer - ডিজিটাল ক্যাশলেস কালেকশন</p>
             </div>
-            <i class="fa-solid fa-qrcode" style="font-size: 2rem; color: #e65100;"></i>
+            <i class="fa-solid fa-qrcode" style="font-size: 2.2rem; color: #e65100;"></i>
         </div>
 
-        <!-- সার্ভিস গ্রিড আইকনস -->
+        <!-- সার্ভিস গ্রিড আইকনস (আসল আইকন ও কালার সহ) -->
         <div class="service-grid">
             <div class="service-item" onclick="openNewCustomerModal()">
                 <div class="service-icon-box" style="color:#2e7d32;"><i class="fa-solid fa-book-open"></i></div>
@@ -544,11 +556,16 @@
         </div>
 
         <div class="list-info-header">
-            <span id="custCountLabel">কাস্টমার ০ / সাপ্লায়ার ০</span>
+            <span id="custCountLabel">কাস্টমার লোড হচ্ছে...</span>
         </div>
 
         <!-- কাস্টমার লিস্ট -->
-        <div class="customer-list-wrap" id="customerListContainer"></div>
+        <div class="customer-list-wrap" id="customerListContainer">
+            <div style="text-align:center; padding:30px; color:#9e9e9e;">
+                <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+                <p style="margin-top:10px;">ডাটা লোড হচ্ছে...</p>
+            </div>
+        </div>
 
         <!-- লাল ফ্লোটিং বাটন -->
         <div class="fab-add-customer" onclick="openNewCustomerModal()">
@@ -754,10 +771,10 @@
         </div>
     </div>
 
-    <!-- Firebase SDK v10 (সরাসরি আসল Mousumi ডেটাবেজের সাথে কানেক্টেড) -->
+    <!-- Firebase SDK v10 (বুলেটপ্রুফ কানেকশন ইঞ্জিন) -->
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, set, onValue, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
@@ -770,7 +787,8 @@
             appId: "1:104820462623:web:e3abae9533cc841463712a"
         };
 
-        const app = initializeApp(firebaseConfig);
+        const existingApps = getApps();
+        const app = existingApps.length > 0 ? existingApps[0] : initializeApp(firebaseConfig);
         const db = getDatabase(app);
         const auth = getAuth(app);
 
@@ -779,29 +797,47 @@
         let activeCustomer = null;
         let selectedDate = new Date().toISOString().split('T')[0];
 
-        signInAnonymously(auth).catch((e) => console.log(e));
+        // নিরাপদ অ্যানোনিমাস লগইন
+        signInAnonymously(auth).catch((err) => {
+            console.warn("Auth Info:", err.message);
+        });
 
-        // লাইভ ডাটা লোড
+        // ফায়ারবেস থেকে নিরাপদ অ্যারে পার্সিং
+        function parseFirebaseData(data) {
+            if (!data) return [];
+            if (Array.isArray(data)) return data.filter(Boolean);
+            return Object.keys(data).map(key => ({
+                id: key,
+                ...data[key]
+            }));
+        }
+
+        // লাইভ কাস্টমার ডাটা সিঙ্ক
         onValue(ref(db, 'customers'), (snap) => {
             const data = snap.val();
-            customers = data ? (Array.isArray(data) ? data : Object.values(data)) : [];
+            customers = parseFirebaseData(data);
             updateHomeTotals();
             renderCustomerList();
             if (activeCustomer) {
                 activeCustomer = customers.find(c => c.id === activeCustomer.id) || activeCustomer;
                 updateEntryScreenHeader();
             }
+        }, (error) => {
+            console.error("Customers read error:", error);
         });
 
+        // লাইভ লেনদেন ডাটা সিঙ্ক
         onValue(ref(db, 'transactions'), (snap) => {
             const data = snap.val();
-            transactions = data ? (Array.isArray(data) ? data : Object.values(data)) : [];
+            transactions = parseFirebaseData(data);
             updateHomeTotals();
             renderCustomerList();
             if (activeCustomer) {
                 updateEntryScreenHeader();
                 renderLedgerTransactions();
             }
+        }, (error) => {
+            console.error("Transactions read error:", error);
         });
 
         function getCustomerDue(custId) {
@@ -837,17 +873,17 @@
 
             const filtered = customers.filter(c => 
                 (c.name && c.name.toLowerCase().includes(searchTerm)) ||
-                (c.phone && c.phone.includes(searchTerm))
+                (c.phone && String(c.phone).includes(searchTerm))
             );
 
             if (filtered.length === 0) {
-                container.innerHTML = '<div style="text-align:center; padding:30px; color:#9e9e9e;">কোনো খাতা বা কাস্টমার মেলেনি!</div>';
+                container.innerHTML = '<div style="text-align:center; padding:30px; color:#9e9e9e;">কোনো কাস্টমার পাওয়া যায়নি!</div>';
                 return;
             }
 
             filtered.forEach(c => {
                 const due = getCustomerDue(c.id);
-                const initials = c.name.trim().substring(0, 2);
+                const initials = (c.name || 'কাস্টমার').trim().substring(0, 2);
 
                 const card = document.createElement('div');
                 card.className = 'customer-card-item';
@@ -894,7 +930,7 @@
         function updateEntryScreenHeader() {
             if (!activeCustomer) return;
             const due = getCustomerDue(activeCustomer.id);
-            const initials = activeCustomer.name.trim().substring(0, 2);
+            const initials = (activeCustomer.name || 'কা').trim().substring(0, 2);
 
             document.getElementById('entryAvatar').innerText = initials;
             document.getElementById('entryCustName').innerText = activeCustomer.name;
@@ -933,7 +969,6 @@
             }
         };
 
-        // লেনদেন ফায়ারবেসে সেভ (ঠিক quick_transaction_module এর মতন চাইল্ড নোডে)
         window.saveTallyTransaction = async function() {
             if (!activeCustomer) return;
 
@@ -977,7 +1012,7 @@
 
         window.openLedgerScreen = function() {
             if (!activeCustomer) return;
-            const initials = activeCustomer.name.trim().substring(0, 2);
+            const initials = (activeCustomer.name || 'কা').trim().substring(0, 2);
             const due = getCustomerDue(activeCustomer.id);
 
             document.getElementById('ledgerAvatar').innerText = initials;
@@ -994,7 +1029,7 @@
 
             const custTxs = transactions
                 .filter(t => t.customerId === activeCustomer.id)
-                .sort((a,b) => b.id.localeCompare(a.id));
+                .sort((a,b) => (b.date + b.time).localeCompare(a.date + a.time));
 
             let totalD = 0;
             let totalC = 0;
@@ -1027,7 +1062,7 @@
         window.openTagadaScreen = function() {
             if (!activeCustomer) return;
             const due = getCustomerDue(activeCustomer.id);
-            const initials = activeCustomer.name.trim().substring(0, 2);
+            const initials = (activeCustomer.name || 'কা').trim().substring(0, 2);
 
             document.getElementById('tagadaAvatar').innerText = initials;
             document.getElementById('tagadaCustName').innerText = activeCustomer.name;
@@ -1067,8 +1102,9 @@
 
             if (!name) { alert("কাস্টমারের নাম লিখুন!"); return; }
 
+            const newCustId = 'cust_' + Date.now();
             const newCust = {
-                id: 'cust_' + Date.now(),
+                id: newCustId,
                 name,
                 phone,
                 address,
@@ -1077,7 +1113,7 @@
             };
 
             try {
-                await set(ref(db, `customers/${newCust.id}`), newCust);
+                await set(ref(db, `customers/${newCustId}`), newCust);
                 alert("🎉 নতুন কাস্টমার যুক্ত হয়েছে!");
                 document.getElementById('newCustName').value = '';
                 document.getElementById('newCustPhone').value = '';
