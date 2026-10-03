@@ -153,28 +153,109 @@
         .text-red { color: var(--due-red); }
         .text-green { color: var(--receive-green); }
 
+        /* ================= 🔍 টালিখাতার মতো পারফেক্ট ফুল-উইডথ সার্চ বার ================= */
         .search-action-bar {
-            padding: 0 16px; display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+            padding: 0 16px;
+            margin-bottom: 10px;
         }
+
         .search-input-wrap {
-            flex: 1; background: #ffffff; border-radius: 25px; padding: 8px 16px;
-            display: flex; align-items: center; gap: 10px; border: 1.5px solid #cbd5e1;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 30px;
+            padding: 9px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1.5px solid #cbd5e1;
+            position: relative;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            transition: border-color 0.2s;
         }
-        .search-input-wrap input { border: none; outline: none; width: 100%; font-size: 0.95rem; background: transparent; }
+
+        .search-input-wrap:focus-within {
+            border-color: var(--brand-primary);
+        }
+
+        .search-icon-fixed {
+            color: #64748b;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .search-input-field {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: 600;
+            background: transparent;
+            color: var(--text-main);
+            direction: ltr !important;
+            text-align: left !important;
+        }
+
+        .search-input-field::placeholder {
+            color: #94a3b8;
+            font-weight: 500;
+            direction: ltr !important;
+            text-align: left !important;
+        }
+
+        .clear-search-btn {
+            color: #64748b;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
 
         .list-info-header {
-            padding: 0 18px 8px 18px; font-size: 0.85rem; font-weight: 700;
-            color: var(--text-muted); display: flex; justify-content: space-between;
+            padding: 0 20px 8px 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .list-action-links {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .list-action-links span {
+            cursor: pointer;
+            color: var(--brand-primary);
+            font-size: 0.82rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .customer-list-wrap {
-            padding: 0 16px; display: flex; flex-direction: column; gap: 8px;
+            padding: 0 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
+
         .customer-card-item {
-            background: #ffffff; border-radius: 14px; padding: 12px 14px;
-            display: flex; align-items: center; justify-content: space-between;
-            border: 1px solid var(--border-ui); cursor: pointer;
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid var(--border-ui);
+            cursor: pointer;
         }
+
         .cust-left { display: flex; align-items: center; gap: 12px; }
         .cust-avatar {
             width: 44px; height: 44px; border-radius: 12px; background: #e0e7ff;
@@ -325,34 +406,9 @@
             width: 100%; height: 48px; border: 1.5px solid #cbd5e1; border-radius: 12px;
             padding: 0 14px; font-size: 0.95rem; margin-bottom: 12px; outline: none;
         }
-
-        /* অথেনটিকেশন প্রম্পট মোডাল */
-        .auth-prompt-card {
-            background: #ffffff; width: 90%; max-width: 380px; margin: auto;
-            border-radius: 20px; padding: 24px; text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-        }
     </style>
 </head>
 <body>
-
-    <!-- ফায়ারবেস লগইন মোডাল (যদি ব্রাউজারে পাসওয়ার্ড সেভ না থাকে) -->
-    <div id="authModal" class="modal-overlay" style="align-items: center;">
-        <div class="auth-prompt-card">
-            <div style="width: 55px; height: 55px; border-radius: 50%; background: #e0e7ff; color: #4338ca; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 15px auto;">
-                <i class="fa-solid fa-lock"></i>
-            </div>
-            <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin-bottom: 6px;">এডমিন পাসওয়ার্ড দিন</h3>
-            <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 18px;">ডাটাবেজে নিরাপদ সংযোগের জন্য আপনার অ্যাডমিন পাসওয়ার্ডটি লিখুন (একবারই দিতে হবে):</p>
-            
-            <input type="password" id="authPasswordInput" placeholder="••••••••" style="width: 100%; height: 46px; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 0 14px; font-size: 1.1rem; text-align: center; margin-bottom: 15px; outline: none;">
-            <p id="authErrorMsg" style="color: #e11d48; font-size: 0.8rem; font-weight: bold; display: none; margin-bottom: 10px;">ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।</p>
-            
-            <button class="btn-confirm-save" onclick="handleManualAuth()" style="height: 46px; font-size: 1rem;">
-                লগইন করুন
-            </button>
-        </div>
-    </div>
 
     <!-- ================= SCREEN 1: হোম স্ক্রিন ================= -->
     <div id="screenHome" class="screen-container active-screen">
@@ -393,7 +449,7 @@
                 <div class="service-icon-box" style="color:#4f46e5;"><i class="fa-solid fa-boxes-stacked"></i></div>
                 <span>স্টক হিসাব</span>
             </div>
-            <div class="service-item">
+            <div class="service-item" onclick="alert('দ্রুত নোটে কোনো ডেটা নেই')">
                 <div class="service-icon-box" style="color:#d97706;"><i class="fa-solid fa-clipboard-list"></i></div>
                 <span>ব্যবসার নোট</span>
             </div>
@@ -431,27 +487,33 @@
             </div>
         </div>
 
-        <!-- সার্চ বার -->
+        <!-- ================= 🔍 টালিখাতার মতো ফুল-উইডথ ও পারফেক্ট কার্সর সার্চ বার ================= -->
         <div class="search-action-bar">
             <div class="search-input-wrap">
-                <i class="fa-solid fa-magnifying-glass" style="color: #64748b;"></i>
-                <input type="text" id="custSearchInput" placeholder="গ্রাহকের নাম বা মোবাইল লিখে খুঁজুন..." oninput="renderCustomerList(this.value)">
+                <i class="fa-solid fa-magnifying-glass search-icon-fixed"></i>
+                <input type="text" id="custSearchInput" 
+                       class="search-input-field" 
+                       placeholder="নাম বা মোবাইল নম্বর দিন" 
+                       autocomplete="off" 
+                       onfocus="forceCursorStart(this)"
+                       onclick="forceCursorStart(this)"
+                       oninput="onSearchInputChanged(this.value)">
+                <i class="fa-solid fa-xmark clear-search-btn" id="btnSearchClear" onclick="resetSearchField()"></i>
             </div>
-            <div class="service-icon-box" style="width:40px; height:40px; border-radius:50%; margin:0;" onclick="openQuickDueList()"><i class="fa-solid fa-arrow-down-wide-short"></i></div>
-            <div class="service-icon-box" style="width:40px; height:40px; border-radius:50%; margin:0;" onclick="window.print()"><i class="fa-solid fa-print"></i></div>
         </div>
 
+        <!-- লিস্ট ইনফো ও কুইক বাটন -->
         <div class="list-info-header">
-            <span id="custCountLabel">কাস্টমার লোড হচ্ছে...</span>
-            <span style="color:#059669; font-size:0.75rem;"><i class="fa-solid fa-circle" style="font-size:7px;"></i> লাইভ ক্লাউড</span>
+            <span id="custCountLabel">মোট গ্রাহক: ৫৫ জন</span>
+            <div class="list-action-links">
+                <span onclick="openQuickDueList()" title="বকেয়া তালিকা"><i class="fa-solid fa-arrow-down-wide-short"></i> শুধু বাকি</span>
+                <span onclick="window.print()" title="প্রিন্ট"><i class="fa-solid fa-print"></i> প্রিন্ট</span>
+            </div>
         </div>
 
         <!-- কাস্টমার লিস্ট -->
         <div class="customer-list-wrap" id="customerListContainer">
-            <div style="text-align:center; padding:30px; color:#64748b;">
-                <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color:#4338ca;"></i>
-                <p style="margin-top:10px; font-weight:700;">ফায়ারবেস থেকে গ্রাহকদের তালিকা আনা হচ্ছে...</p>
-            </div>
+            <!-- ডাইনামিক কাস্টমার কার্ড আসবে -->
         </div>
 
         <!-- ফ্লোটিং বাটন -->
@@ -655,7 +717,7 @@
         </div>
     </div>
 
-    <!-- Firebase SDK v10 (অ্যাডমিন অথেনটিকেশন ব্রিজ সহ) -->
+    <!-- Firebase SDK v10 -->
     <script type="module">
         import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
@@ -682,47 +744,34 @@
         let activeCustomer = null;
         let selectedDate = new Date().toISOString().split('T')[0];
 
-        // ১. অথেনটিকেশন চেকার
+        // ১. অটোমেটিক অথেনটিকেশন ব্রিজ
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                document.getElementById('authModal').style.display = 'none';
                 document.getElementById('liveStatusBadge').innerText = "Live";
                 startRealtimeListeners();
             } else {
-                // পূর্বে সেভ করা পাসওয়ার্ড দিয়ে অটো লগইন চেষ্টা
                 const savedPass = localStorage.getItem('mousumi_admin_pass');
                 if (savedPass) {
                     signInWithEmailAndPassword(auth, adminEmail, savedPass)
-                        .catch(() => {
-                            document.getElementById('authModal').style.display = 'flex';
-                        });
+                        .catch(() => promptForPassword());
                 } else {
-                    document.getElementById('authModal').style.display = 'flex';
+                    promptForPassword();
                 }
             }
         });
 
-        // ম্যানুয়াল লগইন হ্যান্ডলার
-        window.handleManualAuth = async function() {
-            const pass = document.getElementById('authPasswordInput').value;
-            const errEl = document.getElementById('authErrorMsg');
-            errEl.style.display = 'none';
-
-            if (!pass) {
-                errEl.innerText = "পাসওয়ার্ড লিখুন!";
-                errEl.style.display = 'block';
-                return;
+        function promptForPassword() {
+            const pass = prompt("Mousumi POS এডমিন পাসওয়ার্ড লিখুন:");
+            if (pass) {
+                signInWithEmailAndPassword(auth, adminEmail, pass)
+                    .then(() => {
+                        localStorage.setItem('mousumi_admin_pass', pass);
+                    })
+                    .catch((err) => {
+                        alert("ভুল পাসওয়ার্ড! পেজটি রিলোড দিয়ে আবার চেষ্টা করুন।");
+                    });
             }
-
-            try {
-                await signInWithEmailAndPassword(auth, adminEmail, pass);
-                localStorage.setItem('mousumi_admin_pass', pass); // পরবর্তীতে অটো লগইনের জন্য সেভ
-                document.getElementById('authModal').style.display = 'none';
-            } catch (err) {
-                errEl.innerText = "ভুল পাসওয়ার্ড! (এডমিন প্যানেলের পাসওয়ার্ড দিন)";
-                errEl.style.display = 'block';
-            }
-        };
+        }
 
         window.logoutApp = function() {
             if (confirm("লগআউট করতে চান?")) {
@@ -732,7 +781,6 @@
             }
         };
 
-        // নিরাপদ অ্যারে পার্সার
         function safeParseArray(data) {
             if (!data) return [];
             if (Array.isArray(data)) return data.filter(Boolean);
@@ -742,7 +790,7 @@
             }));
         }
 
-        // ২. ডাটাবেজ লিসেনার (লগইন সফল হলে চালু হবে)
+        // ২. ডাটাবেজ লিসেনার
         function startRealtimeListeners() {
             onValue(ref(db, 'customers'), (snap) => {
                 const data = snap.val();
@@ -753,8 +801,6 @@
                     activeCustomer = customers.find(c => c.id === activeCustomer.id) || activeCustomer;
                     updateEntryScreenHeader();
                 }
-            }, (error) => {
-                console.error("Customers read error:", error);
             });
 
             onValue(ref(db, 'transactions'), (snap) => {
@@ -806,7 +852,7 @@
             );
 
             if (filtered.length === 0) {
-                container.innerHTML = '<div style="text-align:center; padding:35px; color:#64748b; font-weight:600;">কোনো গ্রাহক মেলেনি বা ডাটাবেজে এখনো কোনো খাতা নেই!</div>';
+                container.innerHTML = '<div style="text-align:center; padding:35px; color:#64748b; font-weight:600;">কোনো গ্রাহক পাওয়া যায়নি!</div>';
                 return;
             }
 
@@ -821,7 +867,7 @@
                         <div class="cust-avatar">${initials}</div>
                         <div class="cust-info">
                             <h4>${c.name}</h4>
-                            <span>${c.phone || 'মোবাইল নেই'} ${c.address ? '• ' + c.address : ''}</span>
+                            <span>${c.phone || 'মোবাইল নেই'}</span>
                         </div>
                     </div>
                     <div class="cust-right">
@@ -834,6 +880,37 @@
                 card.onclick = () => openCustomerEntry(c);
                 container.appendChild(card);
             });
+        };
+
+        // ================= কার্সর ও সার্চ কন্ট্রোলার (টালিখাতার মতো পারফেক্ট) =================
+        window.forceCursorStart = function(inputEl) {
+            // যদি ইনপুটে কিছু না থাকে, সাথে সাথে কার্সর শুরুতে নেওয়া হবে
+            if (!inputEl.value) {
+                setTimeout(() => {
+                    inputEl.setSelectionRange(0, 0);
+                    inputEl.scrollLeft = 0;
+                }, 10);
+            }
+        };
+
+        window.onSearchInputChanged = function(val) {
+            const clearBtn = document.getElementById('btnSearchClear');
+            if (clearBtn) {
+                clearBtn.style.display = val.trim().length > 0 ? 'flex' : 'none';
+            }
+            renderCustomerList(val);
+        };
+
+        window.resetSearchField = function() {
+            const input = document.getElementById('custSearchInput');
+            const clearBtn = document.getElementById('btnSearchClear');
+            if (input) {
+                input.value = '';
+                input.focus();
+                forceCursorStart(input);
+            }
+            if (clearBtn) clearBtn.style.display = 'none';
+            renderCustomerList('');
         };
 
         window.switchScreen = function(screenId) {
