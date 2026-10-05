@@ -688,7 +688,7 @@
             onValue(ref(db, 'app_config'), (snap) => {
                 const config = snap.val();
                 if (config && config.latest_version) {
-                    if (config.latest_version !== CURRENT_APP_VERSION) {
+                    if (parseFloat(config.latest_version) > 1.0) {
                         document.getElementById('lblNewVersion').innerText = `v${config.latest_version}`;
                         if (config.notes) {
                             document.getElementById('lblUpdateNotes').innerText = config.notes;
